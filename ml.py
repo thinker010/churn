@@ -19,9 +19,9 @@ st.title("📊 Customer Churn Prediction Dashboard")
 st.sidebar.header("Configuration")
 
 DATASETS = {
-    "Telco (IBM/Kaggle)": "Telco-Customer-Churn.csv",
-    "Bank Customer Churn": "Churn_Modelling.csv",
-    "E-commerce Churn": "E Commerce Dataset.csv",
+    "Telco (IBM/Kaggle)": "telco.csv",
+    "Bank Customer Churn": "bank_churn.csv",
+    "E-commerce Churn": "ecommerce_churn.csv",
 }
 
 dataset_name = st.sidebar.selectbox("Dataset", list(DATASETS.keys()))
