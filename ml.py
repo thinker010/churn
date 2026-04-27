@@ -21,7 +21,6 @@ st.sidebar.header("Configuration")
 DATASETS = {
     "Telco (IBM/Kaggle)": "telco.csv",
     "Bank Customer Churn": "bank_churn.csv",
-    "E-commerce Churn": "ecommerce_churn.csv",
 }
 
 dataset_name = st.sidebar.selectbox("Dataset", list(DATASETS.keys()))
