@@ -108,7 +108,7 @@ X_test_scaled  = scaler.transform(X_test)
 # FIX: train_model is cached so it doesn't retrain on every slider change
 # -----------------------------
 @st.cache_resource
-def train_model(penalty, C):
+def train_model(penalty, C, dataset):   # dataset in signature busts cache on switch
     base = LogisticRegression(
         solver="liblinear", penalty=penalty, C=C,
         random_state=42, max_iter=1000
@@ -117,7 +117,7 @@ def train_model(penalty, C):
     calibrated.fit(X_train_scaled, y_train)
     return calibrated
 
-model = train_model(penalty, C)
+model = train_model(penalty, C, dataset_file)
 
 # FIX: extract fitted base estimators from calibrated model
 # (instead of calling base_model.fit() again separately)
@@ -205,10 +205,10 @@ plt.close(fig2)
 # FIX: uses the already-fitted estimator, not a re-trained one
 # -----------------------------
 @st.cache_resource
-def build_explainer():
+def build_explainer(dataset):           # dataset in signature busts cache on switch
     return shap.LinearExplainer(fitted_estimators[0], X_train_scaled)
 
-explainer = build_explainer()
+explainer = build_explainer(dataset_file)
 
 # -----------------------------
 # PREDICTION UI
